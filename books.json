@@ -1,0 +1,19 @@
+{
+  "books": {
+    "test": {
+      "tags": [
+        "another",
+        "test"
+      ],
+      "notes": "asldkjalsdkjalskjd alskjdlaksjdlsajkdsalkjd laksjdlaskjdls asdasdsadsadasdasd",
+      "_last_edited": 1751821230.90365
+    },
+    "another": {
+      "tags": [
+        "meh"
+      ],
+      "notes": "this is another book note.asdasdasdasdaasdasdsad.",
+      "_last_edited": 1751821219.1274083
+    }
+  }
+}
