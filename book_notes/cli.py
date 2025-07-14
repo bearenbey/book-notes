@@ -304,5 +304,8 @@ def main(stdscr):
     data = load_data()
     book_selector(stdscr, data)
 
-if __name__ == "__main__":
+def run():
     curses.wrapper(main)
+
+if __name__ == "__main__":
+    run()
