@@ -1,18 +1,11 @@
 {
   "books": {
-    "Principles": {
+    "Test Book": {
       "tags": [
         "test"
       ],
-      "notes": "this is a test not taking aslkjdhasldjlsakjdksla \nasdlaksjdlaskjdlkasd\n\nlaksjdlasjdlsakjd",
+      "notes": "this is a test book note.",
       "_last_edited": 1751825819.6914914
-    },
-    "another one": {
-      "tags": [
-        "alskdj"
-      ],
-      "notes": "asldjhalksdjaklsjd",
-      "_last_edited": 1751825831.2409024
     }
   }
 }
