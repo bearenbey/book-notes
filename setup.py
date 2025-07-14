@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="Book Note Repository",
-    version="0.1.0",
+    version="0.1.4",
     description="Terminal-based note app for book lovers",
     author="Eren Öğrül",
     author_email="termapp@pm.me",
