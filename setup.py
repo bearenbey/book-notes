@@ -1,18 +1,23 @@
-# setup.py
 from setuptools import setup, find_packages
+from pathlib import Path
+
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="booknotes",
-    version="0.1.4",
+    version="0.1.8",
     description="Terminal-based note app for book lovers",
+    long_description=long_description,
+    long_description_content_type="text/markdown",  # 👈 IMPORTANT!
     author="Eren Öğrül",
     author_email="termapp@pm.me",
-    url="https://github.com/bearenbey/book-notes",
+    url="https://github.com/your-username/book-note-repository",
     packages=find_packages(),
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'booknotes = book_notes.cli:run',
+            'booknote = book_note_repository.cli:run',
         ],
     },
     classifiers=[
