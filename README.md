@@ -37,8 +37,8 @@ A terminal-based note-taking app for organizing your thoughts on books. Fast, ke
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/book-note-repository.git
-cd book-note-repository
+git clone https://github.com/bearenbey/book-notes.git
+cd book-notes
 
 # (Optional) Create a virtual environment
 python3 -m venv venv
@@ -59,7 +59,7 @@ All notes and metadata are saved in a single `books.json` file in the project di
 
 ---
 
-## 📝 License
+## License
 
 This program is free software: you can redistribute it and/or modify  
 it under the terms of the GNU General Public License as published by  
