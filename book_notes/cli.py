@@ -12,7 +12,6 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 # © 2025 Eren Öğrül - termapp@pm.me
-
 import curses
 import json
 import os
@@ -23,7 +22,6 @@ FOCUS_TAGS = 1
 SORT_ALPHABETICAL = 0
 SORT_LAST_EDITED = 1
 import time
-
 def load_data():
     if not os.path.exists(DATA_FILE):
         return {"books": {}}
@@ -33,20 +31,17 @@ def load_data():
         if isinstance(value, str):
             data["books"][title] = {"tags": [], "notes": value}
     return data
-
 def save_data(data):
     for book in data["books"].values():
         if "_last_edited" not in book:
             book["_last_edited"] = time.time()
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
-
 def get_all_tags(data):
     tags = set()
     for b in data["books"].values():
         tags.update(b.get("tags", []))
     return sorted(tags)
-
 def book_selector(stdscr, data):
     stdscr.timeout(50)
     for book in data["books"].values():
@@ -64,19 +59,15 @@ def book_selector(stdscr, data):
         stdscr.clear()
         max_y, max_x = stdscr.getmaxyx()
         mid_x = max_x // 2
-
         # Get all book titles
         all_books = list(data["books"].keys())
-
         # Apply search query filter
         if search_query.strip():
             all_books = [b for b in all_books if search_query.lower() in b.lower() or
                          any(search_query.lower() in tag.lower() for tag in data["books"][b].get("tags", []))]
-
         # Apply tag filter
         if active_tag_filter:
             all_books = [b for b in all_books if active_tag_filter in data["books"][b].get("tags", [])]
-
         # Sort the filtered books based on the current sort method
         if sort_method == SORT_ALPHABETICAL:
             books = sorted(all_books, key=lambda title: title.lower())
@@ -84,21 +75,18 @@ def book_selector(stdscr, data):
             books = sorted(all_books,
                            key=lambda title: data["books"][title].get("_last_edited", 0),
                            reverse=True)
-
         tags = get_all_tags(data)
         # Header
         stdscr.addstr(0, 0, "Book Note Repository".center(max_x), curses.A_BOLD)
         # Update help line to include sorting toggle
         help_line = "[n] New  [Enter] Open  [d] Delete  [e] Edit Tags  [/] Search  [r] Reset  [s] Sort  [Tab] Switch  [q] Quit"
         stdscr.addstr(1, 0, help_line.center(max_x))
-
         # Book list header with current sort method
         if sort_method == SORT_ALPHABETICAL:
             sort_label = "A-Z"
         else:
             sort_label = "Last Edited"
         stdscr.addstr(2, 2, f"Books ({sort_label}):", curses.A_UNDERLINE)
-
         for idx, book in enumerate(books):
             if 3 + idx >= max_y - 4:
                 break
@@ -176,7 +164,6 @@ def book_selector(stdscr, data):
                 selected_book = 0
         elif k == ord('q'):
             break
-
 def new_book(stdscr, data):
     curses.echo()
     stdscr.timeout(-1)  # Set to blocking mode to wait for input
@@ -193,11 +180,13 @@ def new_book(stdscr, data):
         stdscr.refresh()
         curses.noecho()
         note_editor(stdscr, data, name)
+        # note_editor sets its own timeout, so no need to restore here
     else:
         curses.noecho()
         stdscr.clear()
         stdscr.refresh()
-
+        # Restore the timeout to 50 before returning to the main loop
+        stdscr.timeout(50)
 def edit_tags(stdscr, data, book_title):
     curses.echo()
     stdscr.clear()
@@ -211,15 +200,17 @@ def edit_tags(stdscr, data, book_title):
     data["books"][book_title]["_last_edited"] = time.time()
     save_data(data)
     curses.noecho()
-
 def delete_book(stdscr, data, book_title):
     stdscr.clear()
     stdscr.addstr(0, 0, f"Delete '{book_title}'? (y/n): ")
+    # Set timeout to -1 to make getch() blocking
+    stdscr.timeout(-1)
     key = stdscr.getch()
     if key in [ord('y'), ord('Y')]:
         del data["books"][book_title]
         save_data(data)
-
+    # Restore the timeout to 50
+    stdscr.timeout(50)
 def note_editor(stdscr, data, book_title):
     stdscr.timeout(50)  # Note: This was already present
     curses.curs_set(1)
@@ -299,13 +290,10 @@ def note_editor(stdscr, data, book_title):
         elif 0 <= ch < 256:
             lines[row] = lines[row][:col] + chr(ch) + lines[row][col:]
             col += 1
-
 def main(stdscr):
     data = load_data()
     book_selector(stdscr, data)
-
 def run():
     curses.wrapper(main)
-
 if __name__ == "__main__":
     run()
