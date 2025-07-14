@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
-# © 2025 Eren Ogrul - iam.bearen@pm.me
+# © 2025 Eren Öğrül - termapp@pm.me
 
 import curses
 import json
