@@ -1,11 +1,3 @@
 {
-  "books": {
-    "Test Book": {
-      "tags": [
-        "test"
-      ],
-      "notes": "this is a test book note.",
-      "_last_edited": 1751825819.6914914
-    }
-  }
+  "books": {}
 }
