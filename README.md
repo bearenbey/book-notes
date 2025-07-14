@@ -44,10 +44,13 @@ cd book-notes
 python3 -m venv venv
 source venv/bin/activate
 
-# Install dependencies (only standard library required)
-pip install -r requirements.txt  # or skip if not needed
+# Install
+pip install .
 
-# Run the app
+# Run
+booknotes
+
+# Alternative to pip
 python book_notes.py
 ```
 
