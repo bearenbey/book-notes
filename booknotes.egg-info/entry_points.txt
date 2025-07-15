@@ -1,2 +1,2 @@
 [console_scripts]
-booknote = book_note_repository.cli:run
+booknotes = book_notes.cli:run

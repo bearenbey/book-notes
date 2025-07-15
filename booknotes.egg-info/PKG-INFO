@@ -1,14 +1,15 @@
 Metadata-Version: 2.4
 Name: booknotes
-Version: 0.1.8
-Summary: Terminal-based note app for book lovers
-Home-page: https://github.com/your-username/book-note-repository
+Version: 0.2.5
+Summary: A terminal-based book note-taking app with tags and search
 Author: Eren Öğrül
 Author-email: termapp@pm.me
+License: GPL-3.0-or-later
 Classifier: Programming Language :: Python :: 3
+Classifier: Environment :: Console :: Curses
 Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
 Classifier: Operating System :: OS Independent
-Classifier: Environment :: Console :: Curses
+Classifier: Topic :: Utilities
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 Dynamic: author
@@ -16,7 +17,7 @@ Dynamic: author-email
 Dynamic: classifier
 Dynamic: description
 Dynamic: description-content-type
-Dynamic: home-page
+Dynamic: license
 Dynamic: requires-python
 Dynamic: summary
 
@@ -58,22 +59,13 @@ A terminal-based note-taking app for organizing your thoughts on books. Fast, ke
 ## Installation
 
 ```bash
-# Clone the repository
+# Pip
+pip install booknotes
+
+# Oldschool
 git clone https://github.com/bearenbey/book-notes.git
-cd book-notes
-
-# (Optional) Create a virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install
-pip install .
-
-# Run
-booknotes
-
-# Alternative to pip
-python book_notes.py
+cd book-notes/book_notes
+python cli.py
 ```
 
 ---
