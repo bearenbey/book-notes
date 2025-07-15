@@ -34,22 +34,25 @@ A terminal-based note-taking app for organizing your thoughts on books. Fast, ke
 ---
 
 ## Installation
-### Install via pip
+
+Install via pip:
+
 ```bash
-# Pip
 pip install booknotes
 ```
 
-### (Optional) GitHub Repo
+Then run the app:
+
+```bash
+booknotes
+```
+
+To install from source:
+
 ```bash
 git clone https://github.com/bearenbey/book-notes.git
 cd book-notes
 pip install .
-```
-
-Run:
-```bash
-booknotes
 ```
 
 ---
